@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Game{% endblock %}
+{% block content %}
+    <script>
+        if ({{ number_of_players }} < 2) {
+            alert('Error: please enter at least two players');
+            window.location.href = '/index';
+        }
+        else if ({{ number_of_players }} > 8) {
+            alert('Error: there is a maximum of eight players');
+            window.location.href = '/index';
+        }
+        else {
+            window.location.href = '/game';
+        }
+    </script>
+{% endblock %}

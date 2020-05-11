@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Game{% endblock %}
+{% block style %}
+    img {
+        width: 50px;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    h2 {
+        text-align: center;
+    }
+{% endblock %}
+{% block content %}
+    <h2>Results</h2>
+    <div>
+        {% for i in range(number_of_players) %}
+            <h3>Player {{ i + 1 }}: </h3>
+            {% for image in card_images[i] %}
+                <img src="{{ image }}">
+            {% endfor %}
+            <br>
+        {% endfor %}
+
+        <h2>The winners are:</h2>
+        <ul>
+            {% for winner in winners %}
+                <li>Player {{ winner + 1 }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

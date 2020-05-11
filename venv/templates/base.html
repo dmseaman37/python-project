@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        {% block style %}{% endblock %}
+    </style>
+</head>
+<body>
+    <h1>Poker Simulator</h1>
+
+    <p>
+        <a href="/index">Players</a>
+        <a href="/add">Add Player</a>
+        <a href="/play">Play!</a>
+    </p>
+    {% block content %}{% endblock %}
+</body>
+</html>

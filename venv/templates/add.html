@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Add Player{% endblock %}
+{% block style %}
+    form {
+        text-align: center;
+    }
+{% endblock %}
+{% block content %}
+    <form action="/post" method="POST">
+        <h2>Add a player</h2>
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="country">Country</label>
+        <input type="text" id="country" name="country"><br>
+        <button type="submit">Submit</button>
+        <p>* = required</p>
+    </form>
+{% endblock %}

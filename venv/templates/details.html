@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person Info</title>
+    <style>
+        h1
+        {
+            text-align: center
+        }
+
+        #left
+        {
+            width: 50%
+            float: left
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <a href="/index">Back to List</a>
+        <h1>{{ name }}</h1>
+    </div>
+    <div id="left">
+        <strong>Country: {{ country }}</strong><br>
+        <img src="{{ flag }}" alt="Flag not found">
+    </div>
+    <div id="right">
+        <h2>Some facts about {{ country }}</h2>
+        <ul>
+            <li>Resides in the continent of {{ continent }}</li>
+            <li>Capital city is: {{ capital }}</li>
+            <li>Population is: {{ population }}</li>
+            <li>Today's sunrise in {{ country }} (UTC): {{ sunrise }}</li>
+            <li>Tonight's sunset in {{ country }} (UTC): {{ sunset }}</li>
+        </ul>
+        <form action="/delete" method="POST">
+            <input type="hidden" name="name" value="{{ name }}">
+            <button type="submit">Delete Player</button>
+        </form>
+    </div>
+</body>
+</html>
