@@ -12,9 +12,14 @@
     h2 {
         text-align: center;
     }
+
+    h3 {
+        text-align: center;
+    }
 {% endblock %}
 {% block content %}
     <h2>Results</h2>
+    <h3>Deck of cards API</h3>
     <div>
         {% for i in range(number_of_players) %}
             <h3>Player {{ i + 1 }}: </h3>

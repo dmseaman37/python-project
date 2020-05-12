@@ -6,8 +6,6 @@ from sklearn import svm
 
 train_data = []
 train_labels = []
-test_data = []
-test_labels = []
 
 with open('poker-hand-training-true.data', 'r') as train_file:
     for line in train_file:
@@ -18,16 +16,6 @@ with open('poker-hand-training-true.data', 'r') as train_file:
             hand_data.append(int(data[i]))
         train_labels.append(int(data[10]))
         train_data.append(hand_data)
-
-with open('poker-hand-testing.data', 'r') as test_file:
-    for line in test_file:
-        current_line = line.rstrip('\n')
-        data = current_line.split(',')
-        hand_data = []
-        for i in range(10):
-            hand_data.append(int(data[i]))
-        test_labels.append(int(data[10]))
-        test_data.append(hand_data)
 
 classifier = svm.SVC()
 classifier.fit(train_data, train_labels)
@@ -107,11 +95,6 @@ def details():
         if capital == '':
             capital = 'unknown capital'
 
-        # print(country[0]['latlng'])
-        #
-        # latitude = country[0]['latlng'][0]
-        # longitude = country[0]['latlng'][1]
-
         latitude_longitude = country[0]['latlng']
         latitude_longitude.append('unknown')
         latitude_longitude.append('unknown')
@@ -120,8 +103,6 @@ def details():
         longitude = latitude_longitude[1]
 
         sunlight_json = requests.get('https://api.sunrise-sunset.org/json?lat=' + str(latitude) + '&lng=' + str(longitude))
-
-
 
         sunlight_data = sunlight_json.json()
         sunrise = 'unknown'
@@ -221,7 +202,7 @@ def game():
     best_hand = 0
 
     predictions = classifier.predict(translated_hands)
-    print(predictions)
+
     for i in range(len(predictions)):
         if predictions[i] > best_hand:
             best_hand = predictions[i]
@@ -229,21 +210,6 @@ def game():
             winners.append(i)
         elif predictions[i] == best_hand:
             winners.append(i)
-
-    print(winners)
-
-    # for i in range(len(translated_hands)):
-    #     input = []
-    #     input.append(translated_hands[i])
-    #     output = classifier.predict(input)
-    #     prediction = output[0]
-    #
-    #     if prediction > best_hand:
-    #         best_hand = prediction
-    #         winners.clear()
-    #         winners.append(i)
-    #     elif prediction == best_hand:
-    #         winners.append(i)
 
     return render_template('game.html', hands=hands, winners=winners, card_images=card_images, number_of_players=number_of_players)
 
@@ -254,8 +220,8 @@ def error():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# query = 'DELETE FROM players;'
-# cursor.execute(query)
+query = 'DELETE FROM players;'
+cursor.execute(query)
 
 cnx.commit()
 cursor.close()
